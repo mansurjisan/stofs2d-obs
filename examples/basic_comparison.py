@@ -8,7 +8,15 @@ to compare model output with CO-OPS observations.
 """
 
 from stofs2d_obs import Fort61Reader, COOPSMatcher, ModelObsComparison
-from searvey._coops_api import fetch_coops_station
+
+# Import fetch_coops_station with fallback for compatibility
+try:
+    from searvey import fetch_coops_station
+except ImportError:
+    try:
+        from searvey._coops_api import fetch_coops_station
+    except ImportError:
+        from searvey.coops import fetch_coops_station
 
 
 def main():

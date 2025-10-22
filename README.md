@@ -47,7 +47,12 @@ pip install .
 
 ```python
 from stofs2d_obs import Fort61Reader, COOPSMatcher, ModelObsComparison
-from searvey._coops_api import fetch_coops_station
+
+# Import fetch_coops_station (location varies by searvey version)
+try:
+    from searvey import fetch_coops_station
+except ImportError:
+    from searvey.coops import fetch_coops_station
 
 # Read STOFS2D model output
 fort61 = Fort61Reader('fort.61.nc')
