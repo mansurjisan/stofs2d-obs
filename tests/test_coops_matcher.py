@@ -112,7 +112,7 @@ class TestCOOPSMatcher:
         if len(matches) > 1:
             # Check distances are in ascending order
             for i in range(len(matches) - 1):
-                assert matches[i]['distance'] <= matches[i+1]['distance']
+                assert matches.iloc[i]['distance'] <= matches.iloc[i+1]['distance']
 
     def test_distance_calculation(self):
         """Test distance calculation between coordinates"""
