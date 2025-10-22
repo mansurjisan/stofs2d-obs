@@ -6,7 +6,7 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Compare STOFS2D (Storm Tide and Ocean Forecast System 2D) model output with CO-OPS tide gauge observations.
+Compare STOFS output with CO-OPS tide gauge observations.
 
 ## Features
 
@@ -14,7 +14,6 @@ Compare STOFS2D (Storm Tide and Ocean Forecast System 2D) model output with CO-O
 - **Fetch CO-OPS observations** - Automatic retrieval via searvey package
 - **Station matching** - Find nearest CO-OPS stations to model locations
 - **Statistical validation** - RMSE, MAE, Bias, Correlation, Skill Score
-- **Professional plots** - Publication-quality comparison visualizations
 - **Multiple datums** - Support for MSL, MLLW, NAVD88, STND
 
 ## Installation
@@ -295,8 +294,8 @@ For questions or issues, please open an issue on GitHub.
 ## Related Projects
 
 - [searvey](https://github.com/oceanmodeling/searvey) - Fetch ocean observations
-- [ADCIRC](https://adcirc.org/) - Coastal circulation model
-- [STOFS](https://tidesandcurrents.noaa.gov/stofs/) - NOAA Storm Tide Forecast
+- [ADCIRC](https://adcirc.org/) - Advanced circulation model
+- [STOFS](https://tidesandcurrents.noaa.gov/stofs/) - NOAA Storm Surge and Tide Operational Forecast System
 
 ---
 
