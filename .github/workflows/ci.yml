@@ -77,7 +77,7 @@ jobs:
 
     - name: Check import sorting with isort
       run: |
-        isort --check-only --profile black stofs2d_obs/
+        isort --check-only --settings-file=pyproject.toml stofs2d_obs/
 
   build:
     name: Build Package
