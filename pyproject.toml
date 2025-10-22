@@ -80,6 +80,7 @@ exclude = '''
 profile = "black"
 line_length = 100
 skip_gitignore = true
+known_first_party = ["stofs2d_obs"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
