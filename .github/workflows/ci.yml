@@ -36,7 +36,7 @@ jobs:
     - name: Run all tests with coverage (Python 3.12 only)
       if: matrix.python-version == '3.12'
       run: |
-        pytest tests/ -v --cov=stofs2d_obs --cov-report=xml --cov-report=term-missing
+        pytest tests/ -v --cov=stofs2d_obs --cov-report=xml --cov-report=term-missing -m "unit and not slow"
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.12'

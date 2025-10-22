@@ -16,8 +16,8 @@ class TestCOOPSMatcher:
         """Test that COOPSMatcher loads CO-OPS stations"""
         matcher = COOPSMatcher(search_radius=0.5)
         assert matcher.search_radius == 0.5
-        assert matcher.stations is not None
-        assert len(matcher.stations) > 0
+        assert matcher.coops_stations is not None
+        assert len(matcher.coops_stations) > 0
 
     def test_search_radius_stored(self):
         """Test that search radius is stored correctly"""
@@ -38,7 +38,7 @@ class TestCOOPSMatcher:
         assert len(matches) <= 5
 
         # First match should be very close
-        assert matches[0]['distance'] < 1.0
+        assert matches.iloc[0]['distance'] < 1.0
 
     @pytest.mark.slow
     def test_get_best_match(self):
