@@ -9,7 +9,6 @@ using the searvey package.
 import sys
 
 import numpy as np
-
 from searvey.coops import get_coops_stations
 
 
