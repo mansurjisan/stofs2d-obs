@@ -10,17 +10,8 @@ import os
 import sys
 from pathlib import Path
 
+from searvey import fetch_coops_station
 from stofs2d_obs import COOPSMatcher, Fort61Reader, ModelObsComparison
-
-# Import fetch_coops_station - try multiple paths for compatibility
-# across different searvey versions
-try:
-    from searvey import fetch_coops_station
-except ImportError:
-    try:
-        from searvey._coops_api import fetch_coops_station
-    except ImportError:
-        from searvey.coops import fetch_coops_station
 
 
 def list_stations_command(nc_file, n=20):
