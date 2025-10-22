@@ -1,0 +1,104 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stofs2d-obs"
+version = "0.1.0"
+description = "Compare STOFS2D model output with CO-OPS tide gauge observations"
+readme = "README.md"
+authors = [
+    {name = "STOFS2D Validation Team"}
+]
+license = {text = "MIT"}
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Oceanography",
+]
+keywords = ["stofs2d", "adcirc", "coops", "tide gauge", "validation", "oceanography"]
+requires-python = ">=3.8"
+dependencies = [
+    "netCDF4>=1.6.0",
+    "matplotlib>=3.5.0",
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+    "searvey>=0.3.0",
+    "geopandas>=0.10.0",
+    "shapely>=1.8.0",
+    "pytz",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "isort",
+    "mypy",
+]
+docs = [
+    "sphinx>=4.0",
+    "sphinx-rtd-theme",
+]
+
+[project.urls]
+Homepage = "https://github.com/oceanmodeling/stofs2d-obs"
+Documentation = "https://stofs2d-obs.readthedocs.io"
+Repository = "https://github.com/oceanmodeling/stofs2d-obs"
+Issues = "https://github.com/oceanmodeling/stofs2d-obs/issues"
+
+[project.scripts]
+stofs2d-compare = "stofs2d_obs.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["stofs2d_obs*"]
+exclude = ["tests*", "docs*", "examples*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+  | \.eggs
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip_gitignore = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-v --cov=stofs2d_obs --cov-report=term-missing"
+
+[tool.coverage.run]
+source = ["stofs2d_obs"]
+omit = ["tests/*", "setup.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
