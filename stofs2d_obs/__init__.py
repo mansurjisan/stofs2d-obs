@@ -26,17 +26,17 @@ Example:
     >>> comparison.plot_comparison('output.png')
 """
 
-__version__ = '0.1.0'
-__author__ = 'STOFS2D Validation Team'
-__license__ = 'MIT'
+__version__ = "0.1.0"
+__author__ = "STOFS2D Validation Team"
+__license__ = "MIT"
 
+from stofs2d_obs.comparison import ModelObsComparison
 from stofs2d_obs.fort61 import Fort61Reader
 from stofs2d_obs.observations import COOPSMatcher
-from stofs2d_obs.comparison import ModelObsComparison
 
 __all__ = [
-    'Fort61Reader',
-    'COOPSMatcher',
-    'ModelObsComparison',
-    '__version__',
+    "Fort61Reader",
+    "COOPSMatcher",
+    "ModelObsComparison",
+    "__version__",
 ]
