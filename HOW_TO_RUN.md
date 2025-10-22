@@ -123,7 +123,7 @@ Create your own script:
 
 ```python
 from stofs2d_obs_prototype import Fort61Reader, COOPSMatcher, ModelObsComparison
-from searvey import fetch_coops_station
+from searvey._coops_api import fetch_coops_station
 
 # 1. Read model data
 fort61 = Fort61Reader('fort.61.nc')
@@ -322,7 +322,7 @@ Create a script to process multiple stations:
 
 ```python
 from stofs2d_obs_prototype import Fort61Reader, COOPSMatcher, ModelObsComparison
-from searvey import fetch_coops_station
+from searvey._coops_api import fetch_coops_station
 
 fort61 = Fort61Reader('fort.61.nc')
 matcher = COOPSMatcher(search_radius=0.5)

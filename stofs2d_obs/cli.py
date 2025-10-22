@@ -10,7 +10,9 @@ import os
 import sys
 from pathlib import Path
 
-from searvey import fetch_coops_station
+# Import from searvey - use private module as it's not consistently exported
+# across all searvey versions in the public API
+from searvey._coops_api import fetch_coops_station
 from stofs2d_obs import COOPSMatcher, Fort61Reader, ModelObsComparison
 
 
