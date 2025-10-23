@@ -673,8 +673,14 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  # List available stations
+  # List available stations (first 20 by default)
   stofs2d-compare fort.61.nc --list-stations
+
+  # List first 40 stations
+  stofs2d-compare fort.61.nc --list-stations --max-list 40
+
+  # List all stations
+  stofs2d-compare fort.61.nc --list-stations --max-list 0
 
   # Compare single station and generate plot
   stofs2d-compare fort.61.nc --station-idx 30 --plot comparison.png
@@ -703,6 +709,15 @@ For more information, see: https://github.com/oceanmodeling/stofs2d-obs
     )
     station_group.add_argument(
         "--list-stations", action="store_true", help="List available stations and exit"
+    )
+
+    # List stations options
+    parser.add_argument(
+        "--max-list",
+        type=int,
+        metavar="N",
+        default=20,
+        help="Maximum number of stations to list (default: 20, use 0 for all)",
     )
     station_group.add_argument(
         "--batch", action="store_true", help="Batch process multiple stations"
@@ -773,7 +788,7 @@ For more information, see: https://github.com/oceanmodeling/stofs2d-obs
 
     # Execute appropriate command
     if args.list_stations:
-        return list_stations_command(args.nc_file)
+        return list_stations_command(args.nc_file, n=args.max_list)
 
     elif args.station_idx is not None:
         return compare_station(
