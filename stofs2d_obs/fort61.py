@@ -38,7 +38,15 @@ class Fort61Reader:
             time_var = self.ds.variables["time"]
             time_units = time_var.units
             base_date_str = time_units.split("since ")[-1]
-            self.base_date = datetime.strptime(base_date_str, "%Y-%m-%d %H:%M")
+            # Remove any comments (e.g., "! NCDASE - BASE_DAT") from the date string
+            base_date_str = base_date_str.split("!")[0].strip()
+            # Handle both "YYYY-MM-DD HH:MM" and "YYYY-MM-DD HH:MM:SS" formats
+            for fmt in ["%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M"]:
+                try:
+                    self.base_date = datetime.strptime(base_date_str, fmt)
+                    break
+                except ValueError:
+                    continue
 
             # Convert time to datetime
             time_seconds = time_var[:]
