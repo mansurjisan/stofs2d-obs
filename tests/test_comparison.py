@@ -159,6 +159,9 @@ class TestModelObsComparison:
 
     def test_partial_overlap(self):
         """Test handling of partial time overlap"""
+        # Set random seed for reproducibility
+        np.random.seed(42)
+
         # Model data: 100 hours starting Jan 1
         model_data = pd.DataFrame({
             'water_level': np.random.randn(100)
@@ -181,6 +184,9 @@ class TestModelObsComparison:
 
     def test_no_overlap(self):
         """Test handling of no time overlap"""
+        # Set random seed for reproducibility
+        np.random.seed(42)
+
         # Model data: Jan 1-5
         model_data = pd.DataFrame({
             'water_level': np.random.randn(100)
@@ -203,6 +209,9 @@ class TestModelObsComparison:
 
     def test_perfect_correlation(self):
         """Test statistics with perfect correlation"""
+        # Set random seed for reproducibility
+        np.random.seed(42)
+
         # Create identical data
         time_index = pd.date_range('2025-01-01', periods=100, freq='H')
         data_values = np.random.randn(100)
@@ -233,6 +242,9 @@ class TestModelObsComparison:
 
     def test_bias_calculation(self):
         """Test bias calculation"""
+        # Set random seed for reproducibility
+        np.random.seed(42)
+
         time_index = pd.date_range('2025-01-01', periods=100, freq='H')
 
         # Model data with constant offset of +0.5
