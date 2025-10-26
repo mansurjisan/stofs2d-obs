@@ -1,6 +1,6 @@
 # STOFS2D-OBS: STOFS2D Model Validation Package
 
-[![CI](https://github.com/oceanmodeling/stofs2d-obs/actions/workflows/ci.yml/badge.svg)](https://github.com/oceanmodeling/stofs2d-obs/actions/workflows/ci.yml)
+[![CI](https://github.com/mansurjisan/stofs2d-obs/actions/workflows/ci.yml/badge.svg)](https://github.com/mansurjisan/stofs2d-obs/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -23,7 +23,7 @@ Compare STOFS2D model output with CO-OPS tide gauge observations. Automatically 
 
 ```bash
 # Clone the repository
-git clone https://github.com/oceanmodeling/stofs2d-obs.git
+git clone https://github.com/mansurjisan/stofs2d-obs.git
 cd stofs2d-obs
 
 # Install the package
@@ -400,7 +400,7 @@ against CO-OPS tide gauge observations (2025).
 
 ## Support
 
-- Report issues: https://github.com/oceanmodeling/stofs2d-obs/issues
+- Report issues: https://github.com/mansurjisan/stofs2d-obs/issues
 - Documentation: https://stofs2d-obs.readthedocs.io
 - CO-OPS API: https://tidesandcurrents.noaa.gov/api/
 

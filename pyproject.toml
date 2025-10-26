@@ -50,10 +50,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/oceanmodeling/stofs2d-obs"
+Homepage = "https://github.com/mansurjisan/stofs2d-obs"
 Documentation = "https://stofs2d-obs.readthedocs.io"
-Repository = "https://github.com/oceanmodeling/stofs2d-obs"
-Issues = "https://github.com/oceanmodeling/stofs2d-obs/issues"
+Repository = "https://github.com/mansurjisan/stofs2d-obs"
+Issues = "https://github.com/mansurjisan/stofs2d-obs/issues"
 
 [project.scripts]
 stofs2d-compare = "stofs2d_obs.cli:main"
