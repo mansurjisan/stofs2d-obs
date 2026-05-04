@@ -165,12 +165,12 @@ class TestModelObsComparison:
         # Model data: 100 hours starting Jan 1
         model_data = pd.DataFrame({
             'water_level': np.random.randn(100)
-        }, index=pd.date_range('2025-01-01', periods=100, freq='H'))
+        }, index=pd.date_range('2025-01-01', periods=100, freq='h'))
 
         # Obs data: 50 hours starting Jan 2
         obs_data = pd.DataFrame({
             'water_level': np.random.randn(50)
-        }, index=pd.date_range('2025-01-02', periods=50, freq='H', tz='UTC'))
+        }, index=pd.date_range('2025-01-02', periods=50, freq='h', tz='UTC'))
 
         comparison = ModelObsComparison(
             model_data=model_data,
@@ -190,12 +190,12 @@ class TestModelObsComparison:
         # Model data: Jan 1-5
         model_data = pd.DataFrame({
             'water_level': np.random.randn(100)
-        }, index=pd.date_range('2025-01-01', periods=100, freq='H'))
+        }, index=pd.date_range('2025-01-01', periods=100, freq='h'))
 
         # Obs data: Feb 1-5 (no overlap)
         obs_data = pd.DataFrame({
             'water_level': np.random.randn(100)
-        }, index=pd.date_range('2025-02-01', periods=100, freq='H', tz='UTC'))
+        }, index=pd.date_range('2025-02-01', periods=100, freq='h', tz='UTC'))
 
         comparison = ModelObsComparison(
             model_data=model_data,
@@ -213,7 +213,7 @@ class TestModelObsComparison:
         np.random.seed(42)
 
         # Create identical data
-        time_index = pd.date_range('2025-01-01', periods=100, freq='H')
+        time_index = pd.date_range('2025-01-01', periods=100, freq='h')
         data_values = np.random.randn(100)
 
         model_data = pd.DataFrame({
@@ -245,7 +245,7 @@ class TestModelObsComparison:
         # Set random seed for reproducibility
         np.random.seed(42)
 
-        time_index = pd.date_range('2025-01-01', periods=100, freq='H')
+        time_index = pd.date_range('2025-01-01', periods=100, freq='h')
 
         # Model data with constant offset of +0.5
         model_data = pd.DataFrame({

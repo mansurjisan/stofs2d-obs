@@ -62,7 +62,7 @@ def mock_fort61_file(temp_dir):
 
     for i, name in enumerate(station_names):
         name_padded = name.ljust(max_name_len)
-        station_name_var[i] = nc.stringtochar(np.array([name_padded], dtype='S50'))
+        station_name_var[i] = nc.stringtochar(np.array(name_padded, dtype='S50'))
 
     # Coordinates
     x_var[:] = [-75.0, -76.0, -67.0489, -78.0, -79.0]  # Longitude
@@ -80,7 +80,7 @@ def mock_fort61_file(temp_dir):
 @pytest.fixture
 def mock_model_data():
     """Create mock model timeseries data"""
-    time_index = pd.date_range(start='2025-01-01', periods=100, freq='H')
+    time_index = pd.date_range(start='2025-01-01', periods=100, freq='h')
     data = 0.5 * np.sin(np.arange(100) * 2 * np.pi / 24) + 0.3
 
     df = pd.DataFrame({
@@ -93,7 +93,7 @@ def mock_model_data():
 @pytest.fixture
 def mock_obs_data():
     """Create mock observation timeseries data"""
-    time_index = pd.date_range(start='2025-01-01', periods=100, freq='H', tz='UTC')
+    time_index = pd.date_range(start='2025-01-01', periods=100, freq='h', tz='UTC')
     # Similar to model but with some noise and bias
     data = 0.5 * np.sin(np.arange(100) * 2 * np.pi / 24) + 0.25 + np.random.normal(0, 0.02, 100)
 
