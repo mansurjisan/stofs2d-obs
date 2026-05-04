@@ -62,7 +62,7 @@ def mock_fort61_file(temp_dir):
 
     for i, name in enumerate(station_names):
         name_padded = name.ljust(max_name_len)
-        station_name_var[i] = nc.stringtochar(np.array(name_padded, dtype='S50'))
+        station_name_var[i, :] = list(name_padded)
 
     # Coordinates
     x_var[:] = [-75.0, -76.0, -67.0489, -78.0, -79.0]  # Longitude
