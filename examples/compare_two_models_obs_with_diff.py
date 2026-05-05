@@ -103,12 +103,9 @@ def create_plot(file_a, file_b, station_idx, datum='MSL',
     stats_a = comp_a.calculate_statistics()
     stats_b = comp_b.calculate_statistics()
 
-    # ---- Difference (B - A) on common time index ----
-    common_idx = data_a.index.intersection(data_b.index)
-    a_common = data_a.loc[common_idx, 'water_level']
-    b_common = data_b.loc[common_idx, 'water_level']
-    diff = (b_common - a_common).values
-    diff_times = common_idx
+    # ---- Errors w.r.t. observation: model_a - obs and model_b - obs ----
+    err_a = (comp_a.aligned['model'] - comp_a.aligned['obs']).dropna()
+    err_b = (comp_b.aligned['model'] - comp_b.aligned['obs']).dropna()
 
     # ---- Figure ----
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 10), sharex=True)
@@ -135,26 +132,22 @@ def create_plot(file_a, file_b, station_idx, datum='MSL',
              verticalalignment='top',
              bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.9))
 
-    # Bottom: difference (B - A) with red/blue fill
-    ax2.plot(diff_times, diff, 'k-', linewidth=1.2,
-             label=f'{label_b} - {label_a}')
-    ax2.fill_between(diff_times, diff, 0, where=(diff >= 0),
-                     color='red', alpha=0.3, label='Higher')
-    ax2.fill_between(diff_times, diff, 0, where=(diff < 0),
-                     color='blue', alpha=0.3, label='Lower')
+    # Bottom: model errors vs observation
+    ax2.plot(err_a.index, err_a.values, 'b-', linewidth=1.5,
+             label=f'{label_a} - Obs', alpha=0.85)
+    ax2.plot(err_b.index, err_b.values, 'r-', linewidth=1.5,
+             label=f'{label_b} - Obs', alpha=0.85)
     ax2.axhline(y=0, color='k', linestyle='--', linewidth=0.5, alpha=0.5)
-    ax2.set_ylabel('Elevation Difference (m)', fontsize=11)
+    ax2.set_ylabel('Model - Obs (m)', fontsize=11)
     ax2.set_xlabel('Date/Time', fontsize=11)
     ax2.grid(True, alpha=0.3)
     ax2.legend(loc='upper right', fontsize=10, framealpha=0.9)
 
-    diff_stats = (
-        f"Max Diff: {np.max(diff):.3f} m\n"
-        f"Min Diff: {np.min(diff):.3f} m\n"
-        f"Mean Diff: {np.mean(diff):.3f} m\n"
-        f"RMSE (B-A): {np.sqrt(np.mean(diff**2)):.3f} m"
+    err_stats = (
+        f"{label_a} - Obs:  Bias={err_a.mean():+.3f} m,  RMSE={np.sqrt((err_a**2).mean()):.3f} m\n"
+        f"{label_b} - Obs:  Bias={err_b.mean():+.3f} m,  RMSE={np.sqrt((err_b**2).mean()):.3f} m"
     )
-    ax2.text(0.02, 0.98, diff_stats, transform=ax2.transAxes, fontsize=9,
+    ax2.text(0.02, 0.98, err_stats, transform=ax2.transAxes, fontsize=9,
              verticalalignment='top',
              bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.9))
 
