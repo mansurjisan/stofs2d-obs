@@ -10,6 +10,16 @@ CO-OPS observation as a third line on the top panel, plus per-model RMSE/Corr
 vs observation in the stats box.
 """
 import os
+
+# Cap BLAS thread counts before numpy is imported.
+# searvey fetches CO-OPS metadata in parallel; on HPC clusters with low
+# RLIMIT_NPROC (e.g. WCOSS2's 1024), each worker spawning 64 OpenBLAS
+# threads exhausts the per-user process limit and the parallel fetch
+# fails with "All objects passed were None".
+for _v in ('OPENBLAS_NUM_THREADS', 'OMP_NUM_THREADS', 'MKL_NUM_THREADS',
+           'NUMEXPR_NUM_THREADS', 'VECLIB_MAXIMUM_THREADS'):
+    os.environ.setdefault(_v, '1')
+
 import sys
 import argparse
 import numpy as np
